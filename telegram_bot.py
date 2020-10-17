@@ -1,14 +1,73 @@
 import requests
+import json
+import const
+import time
+from pprint import pprint
 
-TOKEN = "1393764739:AAHdgG7ehkUtXVkN14lzI9E73RRHTuxUrIU"
+def main ():
+    while True:
+        url = const.URL.format(token=const.TOKEN, method = const.updates)
+        content = requests.get(url).text
+        data = json.loads(content)
+        result = data["result"][::-1]
+        needed_part = None
+        
+        for element in result:
+            if element["message"]["chat"][id] ==  const.MY_ID:
+                needed_part = element
+                break
+        pprint(needed_part)
+                 
+if not const.UPDATE_ID:
+    with open("update_id", "w") as file:
+        file.write(needed_part["update_id"])
 
-URL = "https://api.telegram.org/bot{token}/{method}"
+        pprint(data)
+        time.sleep(2)
 
-updates = "getUpdates"  # getUpdates - метод для получения обновлений в telegram API
 
-url = URL.format(token=TOKEN, method=updates)
+if __name__ == "__main__":
+    main()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#url_get = URL.format(token=TOKEN, method=updates)
+#url_post = URL.format(token=TOKEN, method=send)
+
+#data = {
+   # "chat_id": "141756366", 
+    #"text": "Hello from bot again"
+
+
+#response_from_bot = requests.post(url_post, data=data)
+#print(response_from_bot)
+#print(response_from_bot.text)
 # print(url)
 
-response = requests.get(url)  # sending get-request
-print(response)
+#response = requests.get(url)  # sending get-request
+
+
+
+
+
+#json_content = json.loads(response.text)
+
+#print(json_content)
+#print(response.text)
+#print(type(json_content))
