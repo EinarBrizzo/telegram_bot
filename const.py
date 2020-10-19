@@ -5,5 +5,5 @@ updates = "getUpdates"  # getUpdates - метод для получения об
 send = "sendMessage" # метод для отправки данных. Название метода нужно брать из API
 MY_ID = 141756366
 
-with open("update_id") as file:
+with open("update_id.txt") as file:
     UPDATE_ID = file.readline()

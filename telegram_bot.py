@@ -18,9 +18,12 @@ def main ():
                 break
         pprint(needed_part)
                  
-if not const.UPDATE_ID:
-    with open("update_id", "w") as file:
-        file.write(needed_part["update_id"])
+        if not const.UPDATE_ID:
+            with open("update_id.txt", "w") as file:
+                file.write(str(needed_part["update_id"]))
+
+        if const.UPDATE_ID != needed_part["update_id"]:
+            pass
 
         pprint(data)
         time.sleep(2)
